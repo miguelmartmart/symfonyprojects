@@ -1,0 +1,22 @@
+{
+    "name": "tuusuario/taller-vehiculos",
+    "type": "project",
+    "require": {
+        "php": ">=8.1",
+        "symfony/symfony": "^6.2",
+        "doctrine/orm": "^2.12",
+        "symfony/orm-pack": "*",
+        "symfony/twig-bundle": "*",
+        "symfony/asset": "*",
+        "symfony/console": "*"
+    },
+    "require-dev": {
+        "symfony/debug-bundle": "*",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

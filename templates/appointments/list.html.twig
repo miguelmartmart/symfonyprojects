@@ -1,0 +1,72 @@
+{# templates/appointments/list.html.twig #}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Citas - Taller de Vehículos</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Gestión de Citas - Taller de Vehículos</h1>
+  </header>
+  <main>
+    <section id="appointments">
+      <h2>Citas Programadas</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha y Hora</th>
+            <th>Tipo de Vehículo</th>
+            <th>Modelo</th>
+            <th>Tipo de Reparación</th>
+            <th>Tiempo Estimado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for appointment in appointments %}
+            <tr>
+              <td>{{ appointment.id }}</td>
+              <td>{{ appointment.customerName }}</td>
+              <td>{{ appointment.appointmentDate|date("Y-m-d H:i") }}</td>
+              <td>{{ appointment.vehicleType }}</td>
+              <td>{{ appointment.vehicleModel }}</td>
+              <td>{{ appointment.repairType }}</td>
+              <td>{{ appointment.estimatedRepairTime }} min</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+    <section id="new-appointment">
+      <h2>Nueva Cita</h2>
+      <form id="appointmentForm" method="POST" action="/appointments/create">
+        <input type="text" name="customerName" placeholder="Nombre del Cliente" required>
+        <input type="datetime-local" name="appointmentDate" required>
+        
+        <label for="vehicleType">Tipo de Vehículo</label>
+        <select name="vehicleType" id="vehicleType" required>
+          <option value="">Seleccione un tipo</option>
+          <option value="car">Automóvil</option>
+          <option value="motorcycle">Motocicleta</option>
+          <option value="other">Otro</option>
+        </select>
+        
+        <label for="vehicleModel">Modelo del Vehículo</label>
+        <select name="vehicleModel" id="vehicleModel" required>
+          <option value="">Seleccione un modelo</option>
+          <!-- Opciones se rellenarán dinámicamente mediante JavaScript -->
+        </select>
+        
+        <input type="text" name="repairType" placeholder="Tipo de Reparación" required>
+        <input type="number" name="estimatedRepairTime" placeholder="Tiempo Estimado (min)" required>
+        <button type="submit">Registrar Cita</button>
+      </form>
+    </section>
+  </main>
+  <script src="/js/app.js"></script>
+</body>
+</html>
