@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'tuusuario/taller-vehiculos',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '4ac3841acc9f76afa3faef7417b6c8c62257d1ff',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -169,6 +169,15 @@
             'reference' => '1793e78dad4108b594084d05d1fb818b85b110af',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laminas/laminas-code',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'monolog/monolog' => array(
+            'pretty_version' => '3.8.1',
+            'version' => '3.8.1.0',
+            'reference' => 'aef6ee73a77a66e404dd6540934a9ef1b3c855b4',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../monolog/monolog',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -383,6 +392,7 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0|2.0|3.0',
+                1 => '3.0.0',
             ),
         ),
         'psr/simple-cache-implementation' => array(
@@ -1100,9 +1110,9 @@
             'dev_requirement' => true,
         ),
         'tuusuario/taller-vehiculos' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '4ac3841acc9f76afa3faef7417b6c8c62257d1ff',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

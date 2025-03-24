@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Página de Inicio</title>
+        <style>
+          /* Estilos básicos para que el enlace se vea como botón */
+          .btn {
+              display: inline-block;
+              padding: 0.5em 1em;
+              background-color: #007bff;
+              color: white;
+              text-decoration: none;
+              border-radius: 4px;
+              font-size: 1rem;
+          }
+          .btn:hover {
+              background-color: #0056b3;
+          }
+        </style>
+    </head>
+<body>
+    <h1>{{ message }}</h1>
+    <!-- Botón que redirige a la ruta 'appointments' -->
+    <a href="{{ path('appointments') }}" class="btn">Ver Citas</a>
+</body>
+</html>

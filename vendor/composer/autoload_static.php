@@ -64,6 +64,10 @@ class ComposerStaticInitd06c494bec1f101d2115b2c3733be3d4
             'ProxyManager\\' => 13,
             'PhpParser\\' => 10,
         ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
+        ),
         'L' => 
         array (
             'Laminas\\Code\\' => 13,
@@ -208,6 +212,10 @@ class ComposerStaticInitd06c494bec1f101d2115b2c3733be3d4
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'Laminas\\Code\\' => 
         array (
