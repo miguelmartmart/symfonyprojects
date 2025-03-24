@@ -13,14 +13,16 @@ class Kernel extends BaseKernel
 
     protected function configureContainer(ContainerConfigurator $container): void
     {
-        // Establece el parámetro kernel.secret usando la variable de entorno APP_SECRET
-        $container->parameters()->set('kernel.secret', $_ENV['APP_SECRET'] ?? 'ChangeMeToASecureValue');
-        $container->import('../config/services.yaml');
-    // Si tienes otros archivos de configuración, puedes importarlos aquí:
-    // $container->import('../config/{packages}/*.yaml');
-        // Si tienes archivos de configuración en config/, puedes importarlos aquí:
-        // $container->import('../config/{packages}/*.yaml');
-    }
+    // Carga todos los archivos de config/packages/*.yaml (incluye framework.yaml con http_client)
+    $container->import('../config/{packages}/*.yaml');
+
+    // Luego carga services.yaml
+    $container->import('../config/services.yaml');
+
+    // Define el secret (kernel.secret)
+    $container->parameters()->set('kernel.secret', $_ENV['APP_SECRET'] ?? 'ChangeMeToASecureValue');
+}
+    
 
     protected function configureRoutes(RoutingConfigurator $routes): void
     {

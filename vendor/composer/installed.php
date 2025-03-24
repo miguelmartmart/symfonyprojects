@@ -3,7 +3,7 @@
         'name' => 'tuusuario/taller-vehiculos',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '4ac3841acc9f76afa3faef7417b6c8c62257d1ff',
+        'reference' => 'aaad214d12788606d0a3f6a241a8e75efb0aa9f1',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -1112,7 +1112,7 @@
         'tuusuario/taller-vehiculos' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '4ac3841acc9f76afa3faef7417b6c8c62257d1ff',
+            'reference' => 'aaad214d12788606d0a3f6a241a8e75efb0aa9f1',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -1,11 +1,11 @@
 services:
-    # Se aplican autoconfiguración y autowiring para todos los servicios
     _defaults:
         autowire: true
         autoconfigure: true
         public: true
 
-    # Registra automáticamente todos los controladores de la carpeta src/Controller
-    App\Controller\:
-        resource: '../src/Controller'
-        tags: ['controller.service_arguments']
+    Symfony\Contracts\HttpClient\HttpClientInterface: '@http_client'
+
+    App\:
+        resource: '../src/'
+        exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'

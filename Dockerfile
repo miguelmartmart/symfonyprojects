@@ -26,6 +26,10 @@ WORKDIR /var/www/html
 # Ejecuta Composer para instalar las dependencias
 RUN composer install
 
+# Ajusta la propiedad y permisos del directorio var para producción
+RUN chown -R www-data:www-data /var/www/html/var \
+    && chmod -R 775 /var/www/html/var
+
 EXPOSE 80
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
