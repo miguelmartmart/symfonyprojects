@@ -2,8 +2,17 @@ FROM php:8.1-apache
 
 # Instala las dependencias necesarias y extensiones PHP
 RUN apt-get update && apt-get install -y \
-    libicu-dev libpq-dev libzip-dev unzip git curl && \
-    docker-php-ext-install intl pdo pdo_mysql zip
+    libicu-dev libpq-dev libzip-dev unzip git curl \
+    && docker-php-ext-install intl pdo pdo_mysql zip \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+# Configuración de Xdebug para depuración en Visual Studio Code
+RUN echo "zend_extension=xdebug.so" >> /usr/local/etc/php/php.ini \
+    && echo "xdebug.mode=debug" >> /usr/local/etc/php/php.ini \
+    && echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/php.ini \
+    && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/php.ini \
+    && echo "xdebug.client_port=9003" >> /usr/local/etc/php/php.ini
 
 # Habilitar mod_rewrite
 RUN a2enmod rewrite
@@ -31,6 +40,7 @@ RUN chown -R www-data:www-data /var/www/html/var \
     && chmod -R 775 /var/www/html/var
 
 EXPOSE 80
+EXPOSE 9003
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
