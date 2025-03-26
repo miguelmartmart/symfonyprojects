@@ -33,3 +33,8 @@ RUN chown -R www-data:www-data /var/www/html/var \
 EXPOSE 80
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+# Corrige permisos y marca como segura la carpeta del proyecto
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 775 /var/www/html && \
+    git config --global --add safe.directory /var/www/html

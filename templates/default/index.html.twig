@@ -1,27 +1,27 @@
+{# templates/default/index.html.twig #}
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Página de Inicio</title>
-        <style>
-          /* Estilos básicos para que el enlace se vea como botón */
-          .btn {
-              display: inline-block;
-              padding: 0.5em 1em;
-              background-color: #007bff;
-              color: white;
-              text-decoration: none;
-              border-radius: 4px;
-              font-size: 1rem;
-          }
-          .btn:hover {
-              background-color: #0056b3;
-          }
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido al Taller de Vehículos</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
 <body>
-    <h1>{{ message }}</h1>
-    <!-- Botón que redirige a la ruta 'appointments' -->
-    <a href="{{ path('appointments') }}" class="btn">Ver Citas</a>
+    <header class="main-header">
+        <h1>Gestión de Citas - Taller de Vehículos</h1>
+    </header>
+
+    <main class="welcome-container">
+        <section class="welcome-card">
+            <h2>Bienvenido</h2>
+            <p>Esta es la plataforma para la gestión de citas del taller de vehículos. Desde aquí podrás visualizar, registrar y gestionar las citas de tus clientes.</p>
+            <a href="{{ path('appointments') }}" class="btn">Ir al Listado de Citas</a>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; {{ "now"|date("Y") }} Taller de Vehículos. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>

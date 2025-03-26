@@ -4,13 +4,14 @@
     "require": {
         "php": ">=8.1",
         "symfony/symfony": "^6.2",
-        "doctrine/orm": "^2.12",
-        "symfony/orm-pack": "*",
+        "doctrine/orm": "*",
+        "symfony/orm-pack": "^2.4",
         "symfony/twig-bundle": "*",
         "symfony/asset": "*",
         "symfony/console": "*",
         "monolog/monolog": "^3.8",
-        "symfony/dotenv": "*"
+        "symfony/dotenv": "*",
+        "doctrine/doctrine-bundle": "^2.14"
     },
     "require-dev": {
         "symfony/debug-bundle": "*",

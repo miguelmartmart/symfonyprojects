@@ -1,70 +1,121 @@
+{# templates/appointments/list.html.twig #}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de Citas - Taller de Vehículos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Incluir Bootstrap para responsividad -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Citas</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <div class="container my-4">
-        <h1 class="text-center">Gestión de Citas - Taller de Vehículos</h1>
-        <div class="row my-3">
-            <div class="col-md-4">
-                <label for="vehicleType" class="form-label">Tipo de Vehículo</label>
-                <select id="vehicleType" name="vehicleType" class="form-select">
-                    <option value="">Seleccione un tipo</option>
-                    {% for key, label in vehicleTypes %}
-                        <option value="{{ key }}">{{ label }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="col-md-4">
-                <label for="vehicleMake" class="form-label">Marca</label>
-                <select id="vehicleMake" name="vehicleMake" class="form-select">
-                    <option value="">Seleccione una marca</option>
-                    {% for make in makes %}
-                        <option value="{{ make.make_id }}" {% if make.make_id == defaultMake %}selected{% endif %}>
-                            {{ make.make_display }}
-                        </option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="col-md-4">
-                <label for="vehicleModel" class="form-label">Modelo</label>
-                <select id="vehicleModel" name="vehicleModel" class="form-select">
-                    <option value="">Seleccione un modelo</option>
-                    {% for model in models %}
-                        <option value="{{ model.model_name }}">{{ model.model_name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-        <!-- Aquí puedes agregar el listado de citas o formularios adicionales -->
-    </div>
+<header>
+    <h1>Gestión de Citas</h1>
+</header>
+<main class="container">
+    <section class="filters">
+        <h2>Filtrar Citas</h2>
+        <form id="filtersForm">
+            <label for="marca">Marca:</label>
+            <select id="marca" name="marca">
+                <option value="">Todas</option>
+                {% for marca in marcas %}
+                    <option value="{{ marca }}">{{ marca }}</option>
+                {% endfor %}
+            </select>
 
-    <!-- Incluir Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      // Actualiza el desplegable de modelos cuando cambie la marca
-      document.getElementById('vehicleMake').addEventListener('change', function() {
-          const make = this.value;
-          fetch('/api/vehicle-models?make=' + encodeURIComponent(make))
-            .then(response => response.json())
-            .then(data => {
-                const modelSelect = document.getElementById('vehicleModel');
-                modelSelect.innerHTML = '<option value="">Seleccione un modelo</option>';
-                data.forEach(model => {
-                    const option = document.createElement('option');
-                    option.value = model.model_name;
-                    option.textContent = model.model_name;
-                    modelSelect.appendChild(option);
-                });
-            })
-            .catch(error => console.error("Error al cargar modelos:", error));
-      });
-    </script>
+            <label for="modelo">Modelo:</label>
+            <select id="modelo" name="modelo" disabled>
+                <option value="">Todos</option>
+            </select>
+
+            <label for="estado">Estado:</label>
+            <select id="estado" name="estado">
+                <option value="">Todos</option>
+                {% for estado in estados %}
+                    <option value="{{ estado }}">{{ estado }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="cliente">Cliente:</label>
+            <select id="cliente" name="cliente">
+                <option value="">Todos</option>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente.id }}">{{ cliente.nombre }}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </section>
+
+    <section>
+        <h2>Listado de Citas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Vehículo</th>
+                </tr>
+            </thead>
+            <tbody id="appointmentTable">
+                {% for cita in appointments %}
+                    <tr data-marca="{{ cita.vehiculo.marca }}" data-modelo="{{ cita.vehiculo.modelo }}" data-estado="{{ cita.estado.value }}" data-cliente="{{ cita.cliente.id }}">
+                        <td>{{ cita.id }}</td>
+                        <td>{{ cita.cliente.nombre }}</td>
+                        <td>{{ cita.fechaCita|date('d-m-Y H:i') }}</td>
+                        <td>{{ cita.estadoLabel }}</td>
+                        <td>{{ cita.vehiculo.marca }} {{ cita.vehiculo.modelo }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const marcaSelect = document.getElementById("marca");
+    const modeloSelect = document.getElementById("modelo");
+    const estadoSelect = document.getElementById("estado");
+    const clienteSelect = document.getElementById("cliente");
+    const rows = document.querySelectorAll("#appointmentTable tr");
+
+    function filterRows() {
+        const marca = marcaSelect.value.toLowerCase();
+        const modelo = modeloSelect.value.toLowerCase();
+        const estado = estadoSelect.value.toLowerCase();
+        const cliente = clienteSelect.value;
+
+        rows.forEach(row => {
+            const matchMarca = !marca || row.dataset.marca.toLowerCase() === marca;
+            const matchModelo = !modelo || row.dataset.modelo.toLowerCase() === modelo;
+            const matchEstado = !estado || row.dataset.estado.toLowerCase() === estado;
+            const matchCliente = !cliente || row.dataset.cliente === cliente;
+            row.style.display = (matchMarca && matchModelo && matchEstado && matchCliente) ? "" : "none";
+        });
+    }
+
+    [marcaSelect, modeloSelect, estadoSelect, clienteSelect].forEach(select => {
+        select.addEventListener("change", filterRows);
+    });
+
+    marcaSelect.addEventListener("change", () => {
+        const modelos = new Set();
+        rows.forEach(row => {
+            if (!marcaSelect.value || row.dataset.marca.toLowerCase() === marcaSelect.value.toLowerCase()) {
+                modelos.add(row.dataset.modelo);
+            }
+        });
+
+        modeloSelect.innerHTML = `<option value="">Todos</option>`;
+        modelos.forEach(modelo => {
+            modeloSelect.innerHTML += `<option value="${modelo}">${modelo}</option>`;
+        });
+
+        modeloSelect.disabled = modelos.size === 0;
+    });
+});
+</script>
 </body>
 </html>

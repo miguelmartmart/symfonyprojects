@@ -1,1 +1,10 @@
-.qodo
+/vendor/
+/var/
+/.env.local
+.env.test
+/.idea/
+/node_modules/
+/public/build/
+*.log
+.DS_Store
+*.sqlite
