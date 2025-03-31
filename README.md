@@ -6,6 +6,39 @@ Aplicación responsive para la gestión de citas en un taller de vehículos. Per
 - Registrar clientes que llaman.
 - Consultar un API externo para obtener información de modelos de vehículos (automóviles, motocicletas y otros) y calcular el tiempo de reparación.
 
+## Estructura del Proyecto
+- **config/packages/framework.yaml**: Configuración principal del framework Symfony.
+- **composer.json**: Define las dependencias del proyecto.
+- **README.md**: Proporciona una descripción del proyecto, requisitos, y pasos de instalación y ejecución.
+- **src/Controller/DefaultController.php**: Controlador principal que maneja la lógica de la página de inicio.
+- **src/Entity/Appointment.php**: Define la entidad `Appointment` que representa una cita en el sistema.
+- **src/Repository/AppointmentRepository.php**: Lógica de acceso a datos para las citas.
+- **src/Service/VehicleInfoService.php**: Servicio para interactuar con el API externo y obtener información de vehículos.
+
+## Tecnologías Principales
+- **Frontend**: Utiliza Twig para la generación de vistas (plantillas HTML).
+- **Backend**: Desarrollado con Symfony 6.2, un framework PHP.
+- **API Externa**: Consulta a un API externo para obtener información sobre modelos de vehículos y calcular tiempos de reparación.
+- **Base de Datos**: Gestionada con Doctrine ORM.
+- **Contenedorización**: Utiliza Docker para la contenedorización de la aplicación.
+- **Pruebas**: PHPUnit para pruebas unitarias.
+
+## Servicios
+- **VehicleInfoService**: Servicio encargado de interactuar con el API externo para obtener información de vehículos y calcular tiempos de reparación.
+- **AppointmentService**: Servicio para la lógica de negocio relacionada con la gestión de citas.
+
+## Funcionamiento
+- **Gestión de Citas**: La aplicación permite visualizar, gestionar y registrar citas para un taller de vehículos.
+- **Clientes**: Se pueden registrar clientes que llaman para solicitar citas.
+- **API Externa**: Consulta a un API externo para obtener información de modelos de vehículos y calcular tiempos de reparación.
+- **Página de Inicio**: Controlador principal que muestra un mensaje de bienvenida.
+
+## Patrones de Diseño
+- **MVC (Modelo-Vista-Controlador)**: Separación clara de responsabilidades en controladores, vistas y modelos.
+- **Repository Pattern**: Uso de repositorios para la abstracción de la capa de acceso a datos.
+- **Dependency Injection**: Implementado por Symfony para la gestión de dependencias.
+- **Service Layer**: Uso de servicios para encapsular la lógica de negocio y facilitar la reutilización del código.
+
 ## Requisitos
 - Docker y Docker Compose.
 - Visual Studio Code.
