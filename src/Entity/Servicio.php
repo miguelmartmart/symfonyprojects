@@ -1,19 +1,14 @@
 <?php
-// src/Entity/Servicio.php
 
 namespace App\Entity;
 
+use App\Repository\ServicioRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity]
-#[ORM\Table(name: "servicios")]
+#[ORM\Entity(repositoryClass: ServicioRepository::class)]
 class Servicio
 {
-
-    #[ORM\OneToMany(mappedBy: 'servicio', targetEntity: CitaServicio::class)]
-private Collection $citaServicios;
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -37,7 +32,6 @@ private Collection $citaServicios;
     #[ORM\Column(type: 'datetime')]
     private \DateTimeInterface $updatedAt;
 
-    // Getters y setters
     public function getId(): ?int
     {
         return $this->id;

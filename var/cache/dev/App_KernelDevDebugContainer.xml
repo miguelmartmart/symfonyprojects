@@ -194,7 +194,23 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
+    <service id="App\Repository\CitaEmpleadoRepository" class="App\Repository\CitaEmpleadoRepository" public="true" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CitaRepository" class="App\Repository\CitaRepository" public="true" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\ClienteRepository" class="App\Repository\ClienteRepository" public="true" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ServicioRepository" class="App\Repository\ServicioRepository" public="true" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\VehiculoRepository" class="App\Repository\VehiculoRepository" public="true" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -2010,7 +2026,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.cXsJHuh"/>
+      <argument type="service" id=".service_locator.7jO8DrW"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -2272,8 +2288,16 @@
     <service id=".abstract.instanceof.App\Controller\DefaultController" class="App\Controller\DefaultController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AppointmentRepository" class="App\Repository\AppointmentRepository" public="true" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\AppointmentRepository" class="App\Repository\AppointmentRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CitaEmpleadoRepository" class="App\Repository\CitaEmpleadoRepository" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CitaEmpleadoRepository" class="App\Repository\CitaEmpleadoRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CitaRepository" class="App\Repository\CitaRepository" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CitaRepository" class="App\Repository\CitaRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ClienteRepository" class="App\Repository\ClienteRepository" public="true" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ClienteRepository" class="App\Repository\ClienteRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ServicioRepository" class="App\Repository\ServicioRepository" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ServicioRepository" class="App\Repository\ServicioRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\VehiculoRepository" class="App\Repository\VehiculoRepository" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\VehiculoRepository" class="App\Repository\VehiculoRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.w7.f4fT" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -2396,11 +2420,15 @@
         <argument key="doctrine.orm.listeners.lock_store_schema_listener" type="service_closure" id="doctrine.orm.listeners.lock_store_schema_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.cXsJHuh" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.7jO8DrW" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AppointmentRepository" type="service_closure" id="App\Repository\AppointmentRepository"/>
+        <argument key="App\Repository\CitaEmpleadoRepository" type="service_closure" id="App\Repository\CitaEmpleadoRepository"/>
+        <argument key="App\Repository\CitaRepository" type="service_closure" id="App\Repository\CitaRepository"/>
         <argument key="App\Repository\ClienteRepository" type="service_closure" id="App\Repository\ClienteRepository"/>
+        <argument key="App\Repository\ServicioRepository" type="service_closure" id="App\Repository\ServicioRepository"/>
+        <argument key="App\Repository\VehiculoRepository" type="service_closure" id="App\Repository\VehiculoRepository"/>
       </argument>
     </service>
     <service id=".service_locator.KLVvNIq" class="Symfony\Component\DependencyInjection\ServiceLocator">

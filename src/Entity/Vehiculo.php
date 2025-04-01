@@ -1,13 +1,14 @@
 <?php
+
 // src/Entity/Vehiculo.php
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Enum\VehiculoTipo;
+use App\Repository\VehiculoRepository;
+use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
-#[ORM\Table(name: "vehiculos")]
+#[ORM\Entity(repositoryClass: VehiculoRepository::class)]
 class Vehiculo
 {
     #[ORM\Id]
@@ -15,11 +16,11 @@ class Vehiculo
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Cliente::class)]
+    #[ORM\ManyToOne(targetEntity: Cliente::class, inversedBy: 'vehiculos')]
     #[ORM\JoinColumn(nullable: false)]
-    private Cliente $cliente;
+    private ?Cliente $cliente = null;
 
-    #[ORM\Column(type: 'string', enumType: VehiculoTipo::class)]
+    #[ORM\Column(type: 'string', length: 255, enumType: VehiculoTipo::class)]
     private VehiculoTipo $tipo;
 
     #[ORM\Column(type: 'string', length: 100)]
@@ -40,21 +41,19 @@ class Vehiculo
     #[ORM\Column(type: 'datetime')]
     private \DateTimeInterface $updatedAt;
 
-    // Getters y setters
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCliente(): Cliente
+    public function getCliente(): ?Cliente
     {
         return $this->cliente;
     }
 
-    public function setCliente(Cliente $cliente): self
+    public function setCliente(?Cliente $cliente): self
     {
         $this->cliente = $cliente;
-
         return $this;
     }
 
@@ -66,7 +65,6 @@ class Vehiculo
     public function setTipo(VehiculoTipo $tipo): self
     {
         $this->tipo = $tipo;
-
         return $this;
     }
 
@@ -78,7 +76,6 @@ class Vehiculo
     public function setMarca(string $marca): self
     {
         $this->marca = $marca;
-
         return $this;
     }
 
@@ -90,7 +87,6 @@ class Vehiculo
     public function setModelo(string $modelo): self
     {
         $this->modelo = $modelo;
-
         return $this;
     }
 
@@ -102,7 +98,6 @@ class Vehiculo
     public function setAnio(?int $anio): self
     {
         $this->anio = $anio;
-
         return $this;
     }
 
@@ -114,7 +109,6 @@ class Vehiculo
     public function setMatricula(?string $matricula): self
     {
         $this->matricula = $matricula;
-
         return $this;
     }
 
@@ -126,7 +120,6 @@ class Vehiculo
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -138,7 +131,6 @@ class Vehiculo
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 }

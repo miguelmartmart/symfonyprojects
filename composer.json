@@ -15,7 +15,9 @@
     },
     "require-dev": {
         "symfony/debug-bundle": "*",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.6",
+        "symfony/panther": "^2.2",
+        "dbrekelmans/bdi": "^1.4"
     },
     "autoload": {
         "psr-4": {

@@ -3,7 +3,7 @@ namespace App\Tests\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\Appointment;
+use App\Entity\Cita;
 use App\Entity\Cliente;
 use App\Entity\Vehiculo;
 use App\Enum\EstadoCita;
@@ -16,23 +16,23 @@ class AppointmentPersistenceTest extends KernelTestCase
     protected function setUp(): void
     {
         self::bootKernel();
-        $this->entityManager = self::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
+        $this->entityManager = static::getContainer()->get('doctrine')->getManager();
     }
 
     public function testCreateAndRetrieveAppointment(): void
     {
-        // Crear Cliente
+        // Cliente
         $cliente = new Cliente();
         $cliente->setNombre('Test User')
             ->setTelefono('999-999')
             ->setEmail('test@example.com')
-            ->setDireccion('Calle Prueba');
+            ->setDireccion('Calle Prueba')
+            ->setCreatedAt(new \DateTime())
+            ->setUpdatedAt(new \DateTime());
 
         $this->entityManager->persist($cliente);
 
-        // Crear Vehículo
+        // Vehiculo
         $vehiculo = new Vehiculo();
         $vehiculo->setCliente($cliente)
             ->setMarca('Ford')
@@ -45,20 +45,20 @@ class AppointmentPersistenceTest extends KernelTestCase
 
         $this->entityManager->persist($vehiculo);
 
-        // Crear Cita
-        $appointment = new Appointment();
-        $appointment->setCliente($cliente);
-        $appointment->setVehiculo($vehiculo);
-        $appointment->setFechaCita(new \DateTime('tomorrow'));
-        $appointment->setEstado(EstadoCita::CONFIRMADA);
-        $appointment->setObservaciones('Prueba de integración');
+        // Cita
+        $appointment = new Cita();
+        $appointment->setCliente($cliente)
+            ->setVehiculo($vehiculo)
+            ->setFechaCita(new \DateTime('tomorrow'))
+            ->setEstado(EstadoCita::CONFIRMADA)
+            ->setObservaciones('Prueba de integración');
 
         $this->entityManager->persist($appointment);
         $this->entityManager->flush();
         $this->entityManager->clear();
 
-        // Recuperar y comprobar
-        $repo = $this->entityManager->getRepository(Appointment::class);
+        // Recuperación y aserciones
+        $repo = $this->entityManager->getRepository(Cita::class);
         $stored = $repo->find($appointment->getId());
 
         $this->assertNotNull($stored);

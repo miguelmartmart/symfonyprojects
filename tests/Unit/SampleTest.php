@@ -8,6 +8,6 @@ class SampleTest extends TestCase
 {
     public function testSum()
     {
-        $this->assertEquals(6, 2 + 2);
+        $this->assertEquals(4, 2 + 2);
     }
 }

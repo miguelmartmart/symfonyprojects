@@ -3,7 +3,7 @@
         'name' => 'tuusuario/taller-vehiculos',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'b49282c0597edf7774a86199d2a6530e07da34a7',
+        'reference' => 'e1d3ea2944b420cc56212185d4ade48c446bc042',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -18,6 +18,15 @@
             'install_path' => __DIR__ . '/./semver',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'dbrekelmans/bdi' => array(
+            'pretty_version' => '1.4.0',
+            'version' => '1.4.0.0',
+            'reference' => 'fa2ff9b5ed0508ddf5cd574f9dfa6fea954a9acd',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../dbrekelmans/bdi',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'doctrine/cache' => array(
             'pretty_version' => '2.2.0',
@@ -145,6 +154,12 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'facebook/webdriver' => array(
+            'dev_requirement' => true,
+            'replaced' => array(
+                0 => '*',
+            ),
+        ),
         'friendsofphp/proxy-manager-lts' => array(
             'pretty_version' => 'v1.0.18',
             'version' => '1.0.18.0',
@@ -225,6 +240,15 @@
             'provided' => array(
                 0 => '*',
             ),
+        ),
+        'php-webdriver/webdriver' => array(
+            'pretty_version' => '1.15.2',
+            'version' => '1.15.2.0',
+            'reference' => '998e499b786805568deaf8cbf06f4044f05d91bf',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../php-webdriver/webdriver',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'phpunit/php-code-coverage' => array(
             'pretty_version' => '9.2.32',
@@ -788,6 +812,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'symfony/panther' => array(
+            'pretty_version' => 'v2.2.0',
+            'version' => '2.2.0.0',
+            'reference' => 'b7e0f834c9046918972edb3dde2ecc4a20f6155e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/panther',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
         'symfony/password-hasher' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -1085,7 +1118,7 @@
         'tuusuario/taller-vehiculos' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'b49282c0597edf7774a86199d2a6530e07da34a7',
+            'reference' => 'e1d3ea2944b420cc56212185d4ade48c446bc042',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

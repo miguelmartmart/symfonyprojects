@@ -1,12 +1,12 @@
 <?php
-// src/Entity/Empleado.php
 
 namespace App\Entity;
 
+use App\Repository\EmpleadoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity]
-#[ORM\Table(name: "empleados")]
+#[ORM\Entity(repositoryClass: EmpleadoRepository::class)]
 class Empleado
 {
     #[ORM\Id]
@@ -15,6 +15,7 @@ class Empleado
     private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private string $nombre;
 
     #[ORM\Column(type: 'string', length: 100, nullable: true)]
@@ -24,6 +25,7 @@ class Empleado
     private ?string $telefono = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column(type: 'datetime')]
@@ -32,8 +34,6 @@ class Empleado
     #[ORM\Column(type: 'datetime')]
     private \DateTimeInterface $updatedAt;
 
-    // Getters y setters
-    
     public function getId(): ?int
     {
         return $this->id;
