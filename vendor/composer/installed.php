@@ -3,7 +3,7 @@
         'name' => 'tuusuario/taller-vehiculos',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'e1d3ea2944b420cc56212185d4ade48c446bc042',
+        'reference' => 'ff2ceec75fbb9e566dad3a2a9ef00dc1a1f843ce',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -177,6 +177,15 @@
             'install_path' => __DIR__ . '/../laminas/laminas-code',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'masterminds/html5' => array(
+            'pretty_version' => '2.9.0',
+            'version' => '2.9.0.0',
+            'reference' => 'f5ac2c0b0a2eefca70b2ce32a5809992227e75a6',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../masterminds/html5',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'monolog/monolog' => array(
             'pretty_version' => '3.8.1',
@@ -1118,7 +1127,7 @@
         'tuusuario/taller-vehiculos' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'e1d3ea2944b420cc56212185d4ade48c446bc042',
+            'reference' => 'ff2ceec75fbb9e566dad3a2a9ef00dc1a1f843ce',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug
 
+RUN ln -s /usr/bin/chromium /usr/bin/chrome || true
+
 # Configuración de Xdebug para depuración en Visual Studio Code
 RUN echo "zend_extension=xdebug.so" >> /usr/local/etc/php/php.ini \
     && echo "xdebug.mode=debug" >> /usr/local/etc/php/php.ini \

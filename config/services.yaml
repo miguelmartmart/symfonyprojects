@@ -9,3 +9,10 @@ services:
     App\:
         resource: '../src/'
         exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+framework:
+  cache:
+    pools:
+      doctrine.system_cache_pool:
+        adapter: cache.system
+      doctrine.result_cache_pool:
+        adapter: cache.app

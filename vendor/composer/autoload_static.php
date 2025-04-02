@@ -67,6 +67,7 @@ class ComposerStaticInitd06c494bec1f101d2115b2c3733be3d4
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Masterminds\\' => 12,
         ),
         'L' => 
         array (
@@ -220,6 +221,10 @@ class ComposerStaticInitd06c494bec1f101d2115b2c3733be3d4
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Masterminds\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/masterminds/html5/src',
         ),
         'Laminas\\Code\\' => 
         array (

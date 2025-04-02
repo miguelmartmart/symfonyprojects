@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/var/www/html
     environment:
-      APP_ENV: dev
+      #APP_ENV: dev
       APP_SECRET: "ChangeMeToASecureValue"
       DATABASE_URL: "mysql://user:password@db:3306/car_workshop"
       VEHICLE_API_URL: "https://www.carqueryapi.com/api/0.3/"

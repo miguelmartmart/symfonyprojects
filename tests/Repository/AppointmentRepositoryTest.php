@@ -17,13 +17,17 @@ class AppointmentRepositoryTest extends KernelTestCase
 
         $cliente = new Cliente();
         $cliente->setNombre('Test');
+        $cliente->setCreatedAt(new \DateTimeImmutable());
+$cliente->setUpdatedAt(new \DateTimeImmutable());
         $em->persist($cliente);
 
         $vehiculo = new Vehiculo();
         $vehiculo->setMarca('TestMarca')
                  ->setModelo('TestModelo')
-                 ->setTipo(\App\Enum\VehiculoTipo::CAR)
+                 ->setTipo(VehiculoTipo::CAR)
                  ->setCliente($cliente);
+                 $vehiculo->setCreatedAt(new \DateTimeImmutable());
+$vehiculo->setUpdatedAt(new \DateTimeImmutable());
         $em->persist($vehiculo);
 
         $cita = new Cita();
@@ -31,6 +35,9 @@ class AppointmentRepositoryTest extends KernelTestCase
              ->setVehiculo($vehiculo)
              ->setFechaCita(new \DateTime())
              ->setEstado(EstadoCita::PENDIENTE);
+             $cita->setCreatedAt(new \DateTimeImmutable());
+$cita->setUpdatedAt(new \DateTimeImmutable());
+
 
         $em->persist($cita);
         $em->flush();

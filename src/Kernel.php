@@ -15,6 +15,7 @@ class Kernel extends BaseKernel
     {
     // Carga todos los archivos de config/packages/*.yaml (incluye framework.yaml con http_client)
     $container->import('../config/{packages}/*.yaml');
+    $container->import('../config/{packages}/'.$this->environment.'/*.yaml');
 
     // Luego carga services.yaml
     $container->import('../config/services.yaml');

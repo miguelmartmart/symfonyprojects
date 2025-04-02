@@ -7,6 +7,8 @@ class AppointmentAcceptanceTest extends PantherTestCase
 {
     public function testAppointmentListView(): void
     {
+        putenv('PANTHER_CHROME_ARGUMENTS=--user-data-dir=/tmp/panther-' . uniqid());
+
         $client = self::createPantherClient();
         $crawler = $client->request('GET', '/appointments');
 

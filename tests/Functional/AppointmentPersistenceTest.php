@@ -52,6 +52,9 @@ class AppointmentPersistenceTest extends KernelTestCase
             ->setFechaCita(new \DateTime('tomorrow'))
             ->setEstado(EstadoCita::CONFIRMADA)
             ->setObservaciones('Prueba de integración');
+            $appointment->setCreatedAt(new \DateTimeImmutable());
+$appointment->setUpdatedAt(new \DateTimeImmutable());
+
 
         $this->entityManager->persist($appointment);
         $this->entityManager->flush();

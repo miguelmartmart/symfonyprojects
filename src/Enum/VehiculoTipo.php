@@ -15,6 +15,7 @@ enum VehiculoTipo: string
         return match($this) {
             self::CAR => 'Coche',
             self::MOTORCYCLE => 'Moto',
+            self::TRUCK => 'truck',
             self::OTHER => 'Otro',
         };
     }

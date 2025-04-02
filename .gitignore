@@ -9,3 +9,6 @@
 .DS_Store
 *.sqlite
 .qodo
+~$*
+*.lock
+*.~lock.*
