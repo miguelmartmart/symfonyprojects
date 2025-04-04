@@ -8,7 +8,13 @@ services:
 
     App\:
         resource: '../src/'
-        exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Tests/'
+            - '../src/Kernel.php'
+            - '../src/Utils/'  # 👈 Añadido para evitar cargar funciones como servicios
+
 framework:
   cache:
     pools:

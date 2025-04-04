@@ -1,17 +1,16 @@
 #!/bin/bash
+echo "🚀 Ejecutando tests Symfony con MySQL (APP_ENV=test)..."
 
-echo "🚀 Ejecutando tests Symfony en entorno test..."
-
-# Establece entorno test
+# Variables de entorno
 export APP_ENV=test
-# Evita conflictos en Chrome con Panther
-export PANTHER_CHROME_ARGUMENTS="--no-sandbox --headless --disable-gpu --user-data-dir=/tmp/panther-$RANDOM"
+export APP_DEBUG=1
+export DATABASE_URL="mysql://user:password@db:3306/car_workshop_test"
 
-# Variables
+# Variables de control
 RESET_DB=false
 LOAD_FIXTURES=false
 
-# Parámetros
+# Opciones del usuario
 for arg in "$@"; do
   if [[ "$arg" == "--reset" ]]; then
     RESET_DB=true
@@ -20,15 +19,15 @@ for arg in "$@"; do
   fi
 done
 
-# Limpiar perfiles anteriores de Chrome (opcional pero recomendado)
+# Limpiar perfiles de navegador (Panther)
 rm -rf /tmp/.com.google.Chrome* /tmp/panther-*
 
 # Limpiar caché
 php bin/console cache:clear --env=test
 
-# Resetear base de datos si se pide
+# Resetear DB si se pide
 if [ "$RESET_DB" = true ]; then
-  echo "🧨 Reseteando base de datos..."
+  echo "🧨 Reseteando base de datos MySQL..."
   php bin/console doctrine:database:drop --env=test --force --if-exists
   php bin/console doctrine:database:create --env=test
   php bin/console doctrine:schema:create --env=test

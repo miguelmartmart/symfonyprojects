@@ -26,7 +26,13 @@ RUN a2enmod rewrite
 RUN sed -ri -e 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 
 # Instalar Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Instalar Composer (versión estable)
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && php -r "unlink('composer-setup.php');"
+
+RUN composer --version
+
 
 # Copiar el código del proyecto
 COPY . /var/www/html
@@ -54,6 +60,20 @@ RUN chown -R www-data:www-data /var/www/html/var && \
 # Configuración adicional Apache
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
+RUN mkdir -p /var/www/html/var/cache/test && \
+    chown -R www-data:www-data /var/www/html/var && \
+    chmod -R 775 /var/www/html/var
+    
+
+    # Instalar Doctrine Fixtures Bundle (evita fallo por Git)
+RUN git config --global --add safe.directory /var/www/html \
+&& composer require --dev doctrine/doctrine-fixtures-bundle || true
+
+RUN composer global config --no-plugins allow-plugins.symfony/flex true && \
+    git config --global --add safe.directory /var/www/html && \
+    composer require --dev doctrine/doctrine-fixtures-bundle
+
+    
 # Exponer puertos
 EXPOSE 80
 EXPOSE 9003

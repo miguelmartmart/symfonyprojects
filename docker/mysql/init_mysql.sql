@@ -2,6 +2,12 @@
 SET NAMES utf8mb4;
 SET CHARACTER SET utf8mb4;
 
+CREATE DATABASE IF NOT EXISTS car_workshop;
+CREATE DATABASE IF NOT EXISTS car_workshop_test;
+
+GRANT ALL PRIVILEGES ON car_workshop.* TO 'user'@'%';
+GRANT ALL PRIVILEGES ON car_workshop_test.* TO 'user'@'%';
+
 -- Eliminar tablas si existen (orden de dependencias)
 DROP TABLE IF EXISTS cita_empleados;
 DROP TABLE IF EXISTS cita_servicios;
