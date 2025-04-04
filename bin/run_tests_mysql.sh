@@ -4,6 +4,8 @@ echo "🚀 Ejecutando tests Symfony en entorno test..."
 
 # Establece entorno test
 export APP_ENV=test
+# Evita conflictos en Chrome con Panther
+export PANTHER_CHROME_ARGUMENTS="--no-sandbox --headless --disable-gpu --user-data-dir=/tmp/panther-$RANDOM"
 
 # Variables
 RESET_DB=false
@@ -17,6 +19,9 @@ for arg in "$@"; do
     LOAD_FIXTURES=true
   fi
 done
+
+# Limpiar perfiles anteriores de Chrome (opcional pero recomendado)
+rm -rf /tmp/.com.google.Chrome* /tmp/panther-*
 
 # Limpiar caché
 php bin/console cache:clear --env=test

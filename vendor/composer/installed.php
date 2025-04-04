@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'tuusuario/taller-vehiculos',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => 'ff2ceec75fbb9e566dad3a2a9ef00dc1a1f843ce',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => null,
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -1125,9 +1125,9 @@
             'dev_requirement' => true,
         ),
         'tuusuario/taller-vehiculos' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => 'ff2ceec75fbb9e566dad3a2a9ef00dc1a1f843ce',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => null,
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

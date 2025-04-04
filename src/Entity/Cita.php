@@ -23,7 +23,7 @@ class Cita
     #[ORM\JoinColumn(nullable: false)]
     private ?Vehiculo $vehiculo = null;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(name: 'fecha_cita', type: 'datetime')]
     private \DateTimeInterface $fechaCita;
 
     #[ORM\Column(type: 'string', enumType: EstadoCita::class)]

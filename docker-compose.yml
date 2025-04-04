@@ -25,10 +25,14 @@ services:
       MYSQL_DATABASE: car_workshop
       MYSQL_USER: user
       MYSQL_PASSWORD: password
+      LANG: C.UTF-8
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
-
+      - ./docker/mysql/init_mysql.sql:/docker-entrypoint-initdb.d/init_mysql.sql:ro
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
 volumes:
   db_data:

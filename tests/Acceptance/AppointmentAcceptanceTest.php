@@ -7,9 +7,10 @@ class AppointmentAcceptanceTest extends PantherTestCase
 {
     public function testAppointmentListView(): void
     {
-        putenv('PANTHER_CHROME_ARGUMENTS=--user-data-dir=/tmp/panther-' . uniqid());
+        putenv('PANTHER_CHROME_ARGUMENTS=--no-sandbox --headless --disable-gpu --user-data-dir=/tmp/panther-' . uniqid());
 
         $client = self::createPantherClient();
+
         $crawler = $client->request('GET', '/appointments');
 
         $this->assertSelectorTextContains('h1', 'Gestión de Citas');

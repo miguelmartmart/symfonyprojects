@@ -7,7 +7,7 @@ use App\Repository\ClienteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-
+use App\Enum\EstadoCita;
 class AppointmentController extends AbstractController
 {
     #[Route('/appointments', name: 'appointments')]
@@ -23,10 +23,11 @@ class AppointmentController extends AbstractController
         ));
         sort($marcas);
 
-        $estados = array_unique(array_map(
-            fn($cita) => $cita->getEstado()->value,
-            $appointments
-        ));
+        $estados = array_map(
+            fn($estado) => $estado->value,
+            EstadoCita::cases()
+        );
+        sort($estados);
         sort($estados);
 
         $clientes = $clienteRepository->findAll();
