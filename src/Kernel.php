@@ -14,13 +14,19 @@ class Kernel extends BaseKernel
 
     public function __construct(string $environment, bool $debug)
     {
-        // Incluir función de log si existe
-        require_once __DIR__ . '/Utils/debug.php';
-        debug_log([
-            'APP_ENV' => $environment,
-            'APP_DEBUG' => $debug,
-            'DATABASE_URL' => $_ENV['DATABASE_URL'] ?? 'not set',
-        ]);
+        $debugFile = __DIR__ . '/Utils/Debug.php';
+
+        if (file_exists($debugFile)) {
+            require_once $debugFile;
+        
+            if (function_exists('debug_log')) {
+                debug_log([
+                    'APP_ENV' => $environment,
+                    'APP_DEBUG' => $debug,
+                    'DATABASE_URL' => $_ENV['DATABASE_URL'] ?? 'not set',
+                ]);
+            }
+        }
 
         parent::__construct($environment, $debug);
     }
