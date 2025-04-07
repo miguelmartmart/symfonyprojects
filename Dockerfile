@@ -51,8 +51,8 @@ RUN mkdir -p /var/www/.cache/composer/files && \
     chown -R www-data:www-data /var/www && \
     git config --global --add safe.directory /var/www/html
 
-# Instalar dependencias de PHP
-RUN composer install
+# Instalar dependencias en modo producción y optimizadas
+RUN composer install --no-dev --prefer-dist --optimize-autoloader
 
 # Convertir scripts .sh a Unix (LF) y darles permisos de ejecución
 RUN find bin/ -type f -name "*.sh" -exec dos2unix {} \; && \
