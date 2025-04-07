@@ -78,6 +78,10 @@ RUN composer global config --no-plugins allow-plugins.symfony/flex true && \
     git config --global --add safe.directory /var/www/html && \
     composer require --dev doctrine/doctrine-fixtures-bundle
 
+    RUN php bin/console cache:clear --env=prod
+RUN php bin/console cache:warmup --env=prod
+
+
 
 # Exponer puertos
 EXPOSE 80
