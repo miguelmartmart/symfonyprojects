@@ -41,6 +41,11 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
 
+# Asegurar permisos adecuados para Symfony (cache y logs)
+RUN mkdir -p var/cache var/log && \
+    chown -R www-data:www-data var && \
+    chmod -R 775 var
+
 # Marcar directorio como seguro para Git y preparar caché Composer
 RUN mkdir -p /var/www/.cache/composer/files && \
     chown -R www-data:www-data /var/www && \
@@ -73,7 +78,7 @@ RUN composer global config --no-plugins allow-plugins.symfony/flex true && \
     git config --global --add safe.directory /var/www/html && \
     composer require --dev doctrine/doctrine-fixtures-bundle
 
-    
+
 # Exponer puertos
 EXPOSE 80
 EXPOSE 9003
