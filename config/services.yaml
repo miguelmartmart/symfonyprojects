@@ -14,7 +14,7 @@ services:
             - '../src/Tests/'
             - '../src/Kernel.php'
             - '../src/Utils/'  # 👈 Añadido para evitar cargar funciones como servicios
-
+            - '../src/_dev/'   # Evitar los fixtures en producción
 framework:
   cache:
     pools:

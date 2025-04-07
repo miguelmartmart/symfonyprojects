@@ -22,12 +22,13 @@ RUN apt-get update && apt-get install -y \
 RUN ln -s /usr/bin/chromium /usr/bin/chrome || true
 
 # --- Configuración Xdebug (solo se activa si está instalado) ---
-RUN echo "zend_extension=xdebug.so" >> /usr/local/etc/php/php.ini \
+RUN if [ "$APP_ENV" = "dev" ]; then \
+    echo "zend_extension=xdebug.so" >> /usr/local/etc/php/php.ini \
     && echo "xdebug.mode=debug" >> /usr/local/etc/php/php.ini \
     && echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/php.ini \
     && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/php.ini \
-    && echo "xdebug.client_port=9003" >> /usr/local/etc/php/php.ini
-
+    && echo "xdebug.client_port=9003" >> /usr/local/etc/php/php.ini ; \
+fi
 # --- Apache ---
 RUN a2enmod rewrite
 RUN sed -ri -e 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf

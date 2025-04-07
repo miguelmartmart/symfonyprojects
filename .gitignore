@@ -38,3 +38,4 @@ contenido_archivos.txt
 docker/mysql/*.sql
 /tests/var/
 coverage/
+/src/_dev/
