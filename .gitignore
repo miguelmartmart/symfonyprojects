@@ -1,14 +1,40 @@
+# Symfony
 /vendor/
 /var/
 /.env.local
 .env.test
-/.idea/
-/node_modules/
-/public/build/
-*.log
-.DS_Store
-*.sqlite
-.qodo
-~$*
+.env.*
 *.lock
-*.~lock.*"contenido_archivos.txt" 
+*.log
+*.sqlite
+*.~lock.*
+/public/build/
+!/public/.htaccess
+
+# Editor config
+/.idea/
+.vscode/
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+
+# Node
+/node_modules/
+
+# Archivos temporales
+~$*
+*.swp
+*.tmp
+*.bak
+*.orig
+
+# Archivos de backup y sistema
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Archivos de pruebas, dumps, fixtures opcionales
+contenido_archivos.txt
+docker/mysql/*.sql
+/tests/var/
+coverage/
